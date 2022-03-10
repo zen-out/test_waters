@@ -4,12 +4,8 @@
     "description": "test all inputs ",
     "main": "index.js",
     "scripts": {
-        "test": "node __tests__/index.js",
-        "docs": "rm -rf docs && ./node_modules/.bin/jsdoc --configure ./jsdoc.json -d docs --verbose",
         "play": "node playground.js",
-        "deploy": "npm run test && git add . && git commit -m 'updated' && git push && npm version patch && npm publish",
-        "compile": "rimraf dist && babel src -d dist",
-        "build": "rimraf dist/ && webpack"
+        "deploy": "npm run play && git add . && git commit -m 'updated' && git push && npm version patch && npm publish"
     },
     "keywords": [
         "test",
@@ -17,33 +13,13 @@
     ],
     "author": "zen-out",
     "license": "MIT",
-    "dependencies": {
-        "explain_me": "latest",
-        "jsdoc": "^3.6.10",
-        "whats_wrong": "latest"
-    },
+    "dependencies": {},
     "homepage": "https://zen-out.github.io/packages/test_waters",
     "repository": {
         "type": "git",
         "url": "https://github.com/zen-out/test_waters.git"
     },
-    "devDependencies": {
-        "gulp": "latest",
-        "gulp-mocha": "latest",
-        "code_clarity": "latest",
-        "node_basetest": "latest",
-        "rimraf": "latest",
-        "webpack": "latest",
-        "webpack-cli": "latest",
-        "copy-webpack-plugin": "latest",
-        "@babel/polyfill": "latest",
-        "@babel/preset-env": "latest",
-        "@babel/cli": "latest",
-        "@babel/plugin-proposal-class-properties": "latest",
-        "@babel/core": "latest",
-        "@babel/node": "latest",
-        "babel-loader": "latest"
-    },
+    "devDependencies": {},
     "exports": {
         ".": "./dist/index.js"
     }
