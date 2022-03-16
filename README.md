@@ -1,6 +1,5 @@
 # test_waters
 [test_waters - start here](https://zen-out.github.io/packages/test_waters)
-[![here](https://github.com/zen-out/zen-out.github.io/blob/master/packages/videos/test_waters.png)](https://github.com/zen-out/zen-out.github.io/blob/master/packages/videos/test_waters.png)undefined
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![NPM Downloads](https://img.shields.io/npm/dw/test_waters)
 ## Instructions: 
@@ -14,49 +13,63 @@
 ## Functions
 
 <dl>
-<dt><a href="#test">test(randomFunction)</a> ⇒ <code>any</code></dt>
+<dt><a href="#testAllTypes">testAllTypes(name, function)</a> ⇒ <code>array</code></dt>
 <dd></dd>
-<dt><a href="#testFunction">testFunction(name, func, array)</a> ⇒ <code>any</code></dt>
-<dd><p>testFunc(name, func, array)</p>
-</dd>
-<dt><a href="#testAsyncFunction">testAsyncFunction(name, func, array)</a> ⇒ <code>any</code></dt>
+<dt><a href="#testFunction">testFunction(name, func, array)</a> ⇒ <code>array</code></dt>
+<dd></dd>
+<dt><a href="#testAsyncFunction">testAsyncFunction(name, func, array)</a> ⇒ <code>array</code></dt>
 <dd><p>testAsyncFunction(name, func, array of objects for input testing)</p>
 </dd>
 </dl>
 
-<a name="test"></a>
+<a name="testAllTypes"></a>
 
-## test(randomFunction) ⇒ <code>any</code>
+## testAllTypes(name, function) ⇒ <code>array</code>
 **Kind**: global function  
 **Date**: 2022-03-06  
 **Author**: zen-out  
 
-| Param | Type |
-| --- | --- |
-| randomFunction | <code>any</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>string</code> |  |
+| function | <code>function</code> | to pass in random inputs |
 
 **Example**  
 ```js
-test_waters.test(function)
+function justPrint(input) {
+    return "waters" + input;
+}
+let getAll = test_waters.testAllTypes("just print", justPrint)
+console.log("🚀 ~ file: playground.js ~ line 7 ~ getAll", getAll)
 ```
 <a name="testFunction"></a>
 
-## testFunction(name, func, array) ⇒ <code>any</code>
-testFunc(name, func, array)
-
+## testFunction(name, func, array) ⇒ <code>array</code>
 **Kind**: global function  
 **Date**: 2022-03-16  
 **Author**: zen-out  
 
 | Param | Type |
 | --- | --- |
-| name | <code>any</code> | 
-| func | <code>any</code> | 
-| array | <code>any</code> | 
+| name | <code>string</code> | 
+| func | <code>function</code> | 
+| array | <code>array</code> | 
 
+**Example**  
+```js
+let inputs = [
+    { id: 1, name: "lesley" }, { id: 2, name: "ryan" }
+]
+function addToDatabase(object) {
+    object["added"] = "done"
+    return object;
+}
+let result = test_waters.testFunction("add to database", addToDatabase, inputs)
+console.log("🚀 ~ file: playground.js ~ line 34 ~ result", result)
+```
 <a name="testAsyncFunction"></a>
 
-## testAsyncFunction(name, func, array) ⇒ <code>any</code>
+## testAsyncFunction(name, func, array) ⇒ <code>array</code>
 testAsyncFunction(name, func, array of objects for input testing)
 
 **Kind**: global function  
@@ -65,7 +78,23 @@ testAsyncFunction(name, func, array of objects for input testing)
 
 | Param | Type |
 | --- | --- |
-| name | <code>any</code> | 
-| func | <code>any</code> | 
-| array | <code>any</code> | 
+| name | <code>string</code> | 
+| func | <code>function</code> | 
+| array | <code>array</code> | 
 
+**Example**  
+```js
+async function resolveAfter2Seconds(object) {
+    let getPromise = await new Promise(resolve => {
+        setTimeout(() => {
+            resolve(object);
+        }, 2000);
+    });
+    return getPromise
+}
+async function getTest() {
+    let results = await test_waters.testAsyncFunction("async", resolveAfter2Seconds, inputs)
+    console.log(results)
+}
+getTest()
+```
