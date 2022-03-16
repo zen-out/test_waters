@@ -8,7 +8,7 @@
  ``` const test_waters =  require('test_waters')```
 
 ## If utilizing in html...: 
-```<script src="./node_modules/test_waters/index.js"></script> ``` 
+```<script src="./node_modules/test_waters/dist/index.js"></script> ``` 
  ``` const output =  test_waters.method(parameter)```
 
 ## Functions

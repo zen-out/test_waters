@@ -6,7 +6,7 @@
  * @param {any} randomFunction
  * @returns {any}
  */
-function test(randomFunction) {
+function testAllTypes(name, randomFunction) {
     let randomString = "helllo"
     let randomArr = [1, 2, 3]
     let randomArrString = ["item one", "item two"]
@@ -30,6 +30,7 @@ function test(randomFunction) {
         } catch (error) {
             output = error;
         }
+        newObj["name"] = "TESTING " + name + " FUNCTION"
         newObj["input"] = input
         newObj["output"] = output
         getTests.push(newObj)
@@ -50,10 +51,16 @@ function testFunction(name, func, array) {
     let newArr = []
     for (let i = 0; i < array.length; i++) {
         let newObj = {}
-        newObj["name"] = name;
-        newObj["input"] = array[i]
-        let getResult = func(array[i])
-        newObj["output"] = getResult;
+        let input = array[i]
+        let output;
+        try {
+            output = func(input)
+        } catch (error) {
+            output = error;
+        }
+        newObj["name"] = "TESTING " + name + " FUNCTION"
+        newObj["input"] = input
+        newObj["output"] = output;
         newArr.push(newObj)
     }
     return newArr
@@ -72,13 +79,19 @@ async function testAsyncFunction(name, func, array) {
     let newArr = []
     for (let i = 0; i < array.length; i++) {
         let newObj = {}
-        newObj["name"] = name;
-        newObj["input"] = array[i]
-        let getResult = await func(array[i])
-        newObj["output"] = getResult;
+        let input = array[i]
+        let output;
+        try {
+            output = await func(input)
+        } catch (error) {
+            output = error;
+        }
+        newObj["name"] = "TESTING " + name + " FUNCTION"
+        newObj["input"] = input
+        newObj["output"] = output;
         newArr.push(newObj)
     }
     return newArr
 }
 
-module.exports = { test, testFunction, testAsyncFunction };
+module.exports = { testAllTypes, testFunction, testAsyncFunction };
